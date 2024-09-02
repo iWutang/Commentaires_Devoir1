@@ -23,3 +23,29 @@ function ajouterCommentaire(commentaire) {
 
     commentaires.push(commentaire);
 }
+
+formulaire.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const prenom = document.getElementById('first-name').value;
+    const nom = document.getElementById('last-name').value;
+    const commentaire = document.getElementById('message').value;
+
+    if (prenom !== '' && nom !== '' && commentaire !== '') {
+        const commentaireObjet = {
+            prenom: prenom,
+            nom: nom,
+            commentaire: commentaire
+        };
+
+        ajouterCommentaire(commentaireObjet);
+
+        document.getElementById('first-name').value = '';
+        document.getElementById('last-name').value = '';
+        document.getElementById('message').value = '';
+
+        erreurMessage.style.display = 'none';
+    } else {
+        erreurMessage.style.display = 'block';
+    }
+});
